@@ -19,7 +19,7 @@ function drawUser(arr) {
 
         button.onclick = () => {
             localStorage.setItem('user', JSON.stringify(item))
-            window.location.href = 'profile.html'
+            window.location.href = `profile.html?id=${item.id}`
         }
 
         userDiv.append(name, company, website, phone, button)
@@ -27,9 +27,14 @@ function drawUser(arr) {
     }
 }
 
-drawUser(users)
-
 const aboutBtn = document.querySelector('.about')
 aboutBtn.onclick = () => {
     window.location.href = 'about.html'
 }
+
+
+const URL = 'https://jsonplaceholder.typicode.com/users'
+
+fetch(URL)
+    .then((r) => r.json())
+    .then((r) => drawUser(r))
