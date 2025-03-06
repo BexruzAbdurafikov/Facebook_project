@@ -5,9 +5,10 @@ function profile() {
 
     fetch(URL)
         .then((r) => r.json())
-        .then((r) => console.log(r))
-
-    user_obj.innerHTML = JSON.stringify(user)
+        .then((r) => {
+            updateUserInfo(r)
+            user_obj.innerHTML = JSON.stringify(r)
+        })
 }
 
 profile()
@@ -33,4 +34,9 @@ function parseSearchParam(search) {
     }
 
     return result;
+}
+
+function updateUserInfo(user) {
+    const title = document.querySelector('h1')
+    title.textContent = `User: ${user.id} - ${user.name}`
 }

@@ -1,6 +1,6 @@
-function drawUser(arr) {
+function drawUser(r) {
     const users = document.querySelector('.users')
-    for (let item of arr) {
+    for (let item of r) {
         const userDiv = document.createElement('div')
         const name = document.createElement('h3')
         const company = document.createElement('p')
@@ -13,13 +13,12 @@ function drawUser(arr) {
 
         button.textContent = 'Подробнее'
         name.textContent = item.name
-        company.textContent = item.company.name
+        company.textContent = item.company?.name
         website.textContent = item.website
         phone.textContent = item.phone
 
         button.onclick = () => {
-            localStorage.setItem('user', JSON.stringify(item))
-            window.location.href = `profile.html?id=${item.id}`
+            window.location.href = `./profile.html?id=${item.id}`
         }
 
         userDiv.append(name, company, website, phone, button)
@@ -31,7 +30,6 @@ const aboutBtn = document.querySelector('.about')
 aboutBtn.onclick = () => {
     window.location.href = 'about.html'
 }
-
 
 const URL = 'https://jsonplaceholder.typicode.com/users'
 
